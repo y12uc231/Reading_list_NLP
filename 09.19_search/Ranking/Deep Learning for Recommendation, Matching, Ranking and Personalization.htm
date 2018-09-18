@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- saved from url=(0025)http://sonyis.me/dnn.html -->
+<html version="g42dymwpi--nx"><!-- v:10.0.7.121 --><head id="ctl00_HeadTag"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="http://cs.microsoft.com/getid.js?jsoncb=MscomSetFPC"></script><meta http-equiv="X-UA-Compatible" content="IE=9"><meta name="assetType" content="Web Page"><title>
+	Deep Learning for Recommendation, Matching, Ranking and Personalization
+</title>
+<meta name="og:title" content="Deep Learning for Recommendation, Matching, Ranking and Personalization"><link rel="stylesheet" type="text/css" href="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/rmccss.aspx"><link rel="stylesheet" type="text/css" href="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/tables.css"><link rel="stylesheet" type="text/css" href="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/tableBorders.css">
+    <script type="text/javascript" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/jquery-2.1.3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/rmcjs.aspx">
+    </script>
+
+    
+
+    <script type="text/javascript" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/jquery-ui.js"></script>
+    <link href="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/jquery-ui.css" rel="stylesheet">
+
+    <style type="text/css">
+        .ui-autocomplete-loading {
+            background: white url("/apps/search/i/animate.gif") right center no-repeat;
+        }
+    </style>
+
+    
+<script type="text/javascript" charset="utf-8" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/metrics.js"></script><script type="text/javascript" charset="utf-8" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/metrics(1).js"></script></head>
+
+<body>
+    <!--NOINDEX_START-->
+
+
+
+    <div class="">
+    <a name="rmcTop"></a>
+    <header>
+   
+        </header>
+
+    <div class="center sw mt16">
+        <!--NOINDEX_STOP-->
+        <div id="contentArea">
+            <script type="text/javascript">
+                var requestTerm;
+
+                $("#cst").autocomplete({
+                    minLength: 2,
+                    source: function (request, response) {
+                        var data = [];
+                        var term = request.term.trim();
+
+                        requestTerm = term;
+
+                        var xr = new XMLHttpRequest();
+                        xr.abort();
+                        xr.open("GET", "/apps/search/getsuggestions.ashx?q=" + term, false);
+                        xr.send();
+
+                        if (xr.responseText != "") {
+                            var o = JSON.parse(xr.responseText);
+
+                            for (var x in o.Suggestions) {
+                                var item = {};
+                                item.value = o.Suggestions[x].Query;
+                                item.label = o.Suggestions[x].Query;
+                                data.push(item);
+                            }
+
+                            //data.sort(function (a, b) { return a.label.localeCompare(b.label) });
+                        }
+
+                        response(data);
+                    },
+                    select: function (event, ui) {
+                        var searchBox = document.getElementById("cst");
+
+                        if (searchBox != null) {
+                            $("#cst").autocomplete("disable");
+                            searchBox.value = ui.item.value;
+                        }
+
+                        $("form:first").submit();
+                    }
+                })
+                .autocomplete("instance")._renderItem = function (ul, item) {
+                    var l = item.label;
+                    var t = requestTerm;
+                    var p = l.toLowerCase().indexOf(t.toLowerCase());
+                    if (p >= 0) {
+                        var r = "";
+                        if (p > 0) {
+                            r = "<b>" + l.substring(0, p) + "</b>";
+                        }
+                        r = r + "<span style=\"color:#787878;\">" + l.substring(p, p + t.length) + "</span>";
+                        r = r + "<b>" + l.substring(p + t.length) + "</b>";
+                        l = r;
+                    }
+                    return $( "<li>" )
+                    .append( l )
+                    .appendTo( ul );
+                };
+
+
+            </script>
+            
+  <div id="mainZone" class="zone">
+    <div class="compositeModule_1Zone ">
+      <div id="" class="zone">
+        <div class="title deM ">Deep Learning for Recommendation, Matching, Ranking and Personalization</div>
+        <div class="conM "><p>
+</p><h4>Contact: <a class="invalidLink" href="http://sonyis.me/" target="_new" onclick="stc(this, 16)">Yang Song</a></h4>
+<p _rdeditor_exists="1">&nbsp;</p>
+<p></p></div>
+        <div style="clear:both;"></div>
+        <div class="conM "><p>Deep Neural Networks (DNN) has shown to be very effective for image classification, speech recognition and sequence modeling in the past few years. Beyond those applications, out recent research outcomes also show the power of DNN for various user modeling tasks, such as recommendation, ranking adaptation and personalization. Here is the summary of our work at Microsoft Research.</p>
+<p>&nbsp;</p>
+<p>
+</p><table style="WIDTH: 100%">
+<tbody>
+<tr>
+<td><span id="faa63542-6659-4f00-b5f1-6bad61317e5a" class="ImageBlock fn" style="WIDTH: 450px; MARGIN: 0px"><img id="Imagefaa63542-6659-4f00-b5f1-6bad61317e5a" style="HEIGHT: 264px; WIDTH: 450px" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/adaptation.png"><span id="ImageCaptionfaa63542-6659-4f00-b5f1-6bad61317e5a" class="ImageCaptionCoreCss ImageCaption"></span></span>&nbsp;</td>
+<td>
+<p><strong>Ranking Adaptation:</strong> RankNet is one of the widely used ranking models for web search tasks. In this work, we study how to adapt a generic RankNet for personalized search. We first trained a variety of RankNets with different number of hidden layers and network structures on a per-user basis, and observed that a deep neural network with five hidden layers gives the best performance. To further improve the performance of adaptation, we propose a set of novel methods categorized into two groups. In the first group, three methods are proposed to properly assess the usefulness of each adaptation instance and only leverage the most informative instances to adapt a user-specific RankNet model. These assessments are based on KL-divergence, click entropy or a heuristic to ignore top clicks in adaptation queries. In the second group, two methods are proposed to regularize the training of the neural network in RankNet: one of these methods regularize the error back-propagation via a truncated gradient approach, while the other method limits the depth of the back propagation when adapting the neural network.&nbsp;</p>
+<p>
+<a class="invalidLink" href="http://sonyis.me/paperpdf/wsdm233-song-2014.pdf" onclick="stc(this, 17)" target="_new">WSDM 2014</a>, 
+<a class="invalidLink" href="http://sonyis.me/paperpdf/sigir2013_wang.pdf" onclick="stc(this, 18)" target="_new">SIGIR 2013</a>.</p></td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td><span id="a48233ad-4f62-4b89-b5d5-5fc2b45142b4" class="ImageBlock fn" style="WIDTH: 449px; MARGIN: 0px"><img id="Imagea48233ad-4f62-4b89-b5d5-5fc2b45142b4" style="HEIGHT: 285px; WIDTH: 449px" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/mvdnn.png"><span id="ImageCaptiona48233ad-4f62-4b89-b5d5-5fc2b45142b4" class="ImageCaptionCoreCss ImageCaption"></span></span>&nbsp;</td>
+<td>
+<p><strong>Cross-domain Recommendation</strong>:&nbsp;In this work, we propose a content-based recommendation system to address both the recommendation quality and the system scalability. We propose to use a rich feature set to represent users, according to their web browsing history and search queries. We use a Deep Learning approach to map users and items to a latent space where the similarity between users and their preferred items is maximized. We extend the model to jointly learn from features of items from different domains and user features by introducing a multi-view Deep Learning model. The combination of different domains into a single model for learning helps improve the recommendation quality across all the domains, as well as having a more compact and a semantically richer user latent feature vector.&nbsp; </p>
+<p>
+<a class="invalidLink" href="http://sonyis.me/paperpdf/frp1159-songA-www-2015.pdf" onclick="stc(this, 19)" target="_new">WWW 2015</a></p></td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td><span id="a70b6562-80ca-4711-a29f-6ab23939c2eb" class="ImageBlock fn" style="WIDTH: 461px; MARGIN: 0px"><img id="Imagea70b6562-80ca-4711-a29f-6ab23939c2eb" style="HEIGHT: 176px; WIDTH: 461px" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/proactive.png"><span id="ImageCaptiona70b6562-80ca-4711-a29f-6ab23939c2eb" class="ImageCaptionCoreCss ImageCaption"></span></span>&nbsp;</td>
+<td>
+<p><strong>Zero-query Search Prediction</strong>:&nbsp;&nbsp;In this work, we study proactive recommendations without user issuing queries. In this work, we aim at discovering and characterizing these types of tasks so that we can automatically predict when} and what types of tasks will be repeated by the users in the future, through analyzing search logs from a commercial Web search engine and user interaction logs from a mobile App that offers proactive recommendations. We first introduce a set of novel features that can accurately capture task repetition. We then propose a novel deep learning framework that learns user preferences and makes automatic predictions. Our framework is capable of learning both user-independent global models as well as catering personalized models via model adaptation.</p>
+<p>
+<a class="invalidLink" href="http://sonyis.me/paperpdf/frp0447-song-www2016.pdf" onclick="stc(this, 20)" target="_new">WWW 2016</a></p></td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span id="52b2e43a-ff73-4b18-af12-f2777ad9c81e" class="ImageBlock fn" style="WIDTH: 373px; MARGIN: 0px"><img id="Image52b2e43a-ff73-4b18-af12-f2777ad9c81e" style="HEIGHT: 277px; WIDTH: 373px" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/mrdnn2.png"><span id="ImageCaption52b2e43a-ff73-4b18-af12-f2777ad9c81e" class="ImageCaptionCoreCss ImageCaption"></span></span>&nbsp;</td>
+<td>
+<p><strong>Multi-resolution DNN for Temporal Recommendation</strong>:&nbsp;In this work, we study the temporal recommendation task where the correlations&nbsp;between recommended items are not only content-based but also time-related. We proposed a novel multi-resolution DNN that combines content-based DNN with&nbsp;several temporal models (LSTM) to jointly optimize content similarity and time correlations.</p>
+<p>
+<a class="invalidLink" href="http://sonyis.me/paperpdf/spr209-song_sigir16.pdf" onclick="stc(this, 21)" target="_new">SIGIR 2016</a></p></td></tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td></tr>
+<tr>
+<td>
+<p align="center">(Picture To&nbsp;Be Added)&nbsp;</p></td>
+<td><strong>Deep Matrix Factorization</strong>: In this work, we study the problem of matrix factorization. We propose a matching framework that optimizes the correlation between users and items in a latent space,&nbsp;which is generated using deep neural networks. We show the effectiveness of our models on several applications, including collaborative filtering, latent semantic indexing, GLoVe and so on.</td></tr></tbody></table><p></p></div>
+        <div style="clear:both;"></div>
+      </div>
+      <div style="clear:left;"></div>
+    </div>
+  </div>
+
+        </div>
+        <!--NOINDEX_START-->
+        <div class="cl"></div>
+    </div>
+    <footer>
+
+    </footer>
+    <script type="text/javascript" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/toolkit.ashx"></script>
+    <script type="text/javascript">
+        rmc.AE(window, "unload", rmc.PageDepth);
+        rmc.AE(window, "scroll", rmc.MaxScroll);
+        
+        rmc.Translator.FillLanguages();
+        
+    </script>
+	<!--NOINDEX_STOP-->
+    <!-- this used to click count when feedback popup is clicked -->
+    <img id="clickCountImg" style="display: none">
+    <div class="dn">
+        
+    </div>
+    <div id="pageShade">
+    </div>
+    
+    <script type="text/JavaScript">
+        var varSegmentation = 0;
+        var varClickTracking = 1;
+        var varCustomerTracking = 1;
+        var varAutoFirePV = 1;
+        var Route = "79500";
+        var Ctrl = "";
+        document.write("<script type='text/javascript' src='" + (window.location.protocol) + "//c.microsoft.com/ms.js'" + "'><\/script>");
+    </script><script type="text/javascript" src="http://c.microsoft.com/ms.js" '=""></script><script type="text/javascript" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/ms.js" '=""></script><iframe id="_msnFrame" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/c.html" style="z-index:-1;height:1px;width:1px;display:none;visibility:hidden;"></iframe><iframe id="_msnFrame" src="./Deep Learning for Recommendation, Matching, Ranking and Personalization_files/c(2).html" style="z-index:-1;height:1px;width:1px;display:none;visibility:hidden;"></iframe> 
+    <noscript>&lt;img alt="" width="1" height="1" src="http://c.microsoft.com/trans_pixel.aspx"/&gt;</noscript> 
+    
+<script type="text/javascript">
+function stc(e,linkIndex){if(document.images){var linkText;if(navigator.appName.toLowerCase()=="microsoft internet explorer"){linkText=e.innerText}else{linkText=e.textContent}if(linkText==""){if(e.firstChild){var firstChild=e.firstChild.nodeName.toUpperCase();if(firstChild=="IMG"){linkText="Image: "+getName(e.firstChild.getAttribute('src'))}}else{var nodeName=e.nodeName.toUpperCase();if(nodeName=="AREA"){linkText="ImageMap: "+e.href}}}if(linkText==""){linkText=e.href}(new Image()).src="/a/i/stg.gif?f="+escape(document.location.href)+"&t="+escape(e.href)+"&i="+linkIndex+"&n="+escape(trimString(linkText))}}function getName(s){if(s.lastIndexOf('/')>=0){return(s.substring(s.lastIndexOf('/')+1,s.length))}else{return(s)}}function trimString(s){return(s.replace(/^\s*/,"").replace(/\s*$/,""))}
+</script>
+
+</div><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0" style="display: none;"></ul><span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span></body></html>
